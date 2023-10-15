@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Mode</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mycss.css}">
+    <link rel="script" th:href="@{/js/bootstrap.js}">
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <a href="/" class="navbar-brand" style="text-decoration-style: solid">
+        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle"
+             xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill-rule="evenodd"
+                  d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+        </svg>
+    </a>
+
+
+</nav>
+<!-- Editable table -->
+<span class="table-add float-right mb-3 mr-2"><a href="#" class="text-success"><i
+        class="fas fa-plus fa-2x" aria-hidden="true"/></a></span>
+<table class="table table-bordered table-responsive-md table-striped text-center" align="center">
+    <thead>
+    <tr>
+        <th class="text-center">Title</th>
+        <th class="text-center">Description</th>
+        <th class="text-center">Duration Time</th>
+        <th class="text-center">Link</th>
+        <th class="text-center">Image Direction</th>
+        <th class="text-center">Updated at</th>
+        <th><a href="add.html"> <span class="table-remove"><button type="button"
+                                                                   class="btn btn-success btn-rounded btn-sm my-0">Add</button></span></a>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="audiovisual, iStat : ${audiovisualPage.content}"
+        th:alt-title="${iStat.even}? 'even' : 'odd'">
+        <td th:text="${audiovisual.title}" contenteditable="false"/>
+        <td th:text="${audiovisual.description}" contenteditable="false"/>
+        <td th:text="${audiovisual.durationTime}" contenteditable="false"/>
+        <td th:text="${audiovisual.link}" contenteditable="false"/>
+        <td th:text="${audiovisual.image}" contenteditable="false"/>
+        <td th:text="${audiovisual.updatedAt}" contenteditable="false"/>
+        <td>
+            <form  th:action="@{delete}">
+                <a th:href="@{/remove(id=${audiovisual.id})}">
+              <span class="table-remove"><button type="button"
+                                                 class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                </a>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div style="align-content: center;transform: translate(45%, 45%);">
+    <ul class="pagination">
+        <li class="paginate_button page-item  previous" th:classappend="${audiovisualPage.number < 1}? disabled : ''"
+            id="dtBasicExample_previous"><a
+                th:href="@{'/admin.html?page='+ ${audiovisualPage.number-1}}"
+                aria-controls="dtBasicExample"
+                data-dt-idx="0"
+                tabindex="0"
+                class="page-link">Previous</a>
+
+        <li class="paginate_button page-item next"
+            th:classappend="${(audiovisualPage.number+1) * audiovisualPage.size >= audiovisualPage.totalElements}? disabled : ''"
+            id="dtBasicExample_next" style="align-items: end"><a
+                th:href="@{'/admin.html?page='+ ${audiovisualPage.number+1}}"
+                aria-controls="dtBasicExample"
+                data-dt-idx="7"
+                tabindex="0"
+                class="page-link">Next</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

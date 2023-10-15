@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <a href="/admin.html" class="navbar-brand" style="text-decoration-style: solid">
+        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle"
+             xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill-rule="evenodd"
+                  d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+        </svg>
+    </a>
+</nav>
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card" style="background-color: whitesmoke">
+                <form th:action="@{/save}" th:object="${audiovisual}" name="formulario" method="post">
+                    <div class="form-row">
+                        <div class="col-md-6 form-group">
+                            <label>Title</label>
+                            <input th:field="*{title}" type="text" name="title" class="form-control">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Description</label>
+                            <input th:field="*{description}" onkeydown="validateDescription(event, this.value)"
+                                   name="description" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Duration Time</label>
+                            <input th:field="*{durationTime}" onkeydown="validateDurationTime(event, this.value)"
+                                   name="duration" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Link</label>
+                            <input th:field="*{link}" type="text" name="link" class="form-control">
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label>Image</label>
+                            <input th:field="*{image}" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <button type="submit" name="btn" class="btn btn-primary btn-block mt-3">Save</button>
+                </form>
+                <script>
+                    (function () {
+                        var formulario = document.getElementsByName('formulario')[0],
+                            elementos = formulario.elements,
+                            boton = document.getElementById('btn');
+                        var validarDuracion = function (e) {
+                            var total = 0;
+                            for (var i = 1; i < 6; i++) {
+                                if (elementos[i].value == 0) {
+                                    total++;
+                                }
+                            }
+                            if (total === 5) {
+                                alert("Llene todos los campos");
+                                e.preventDefault();
+                            } else {
+                                var fields = ["Title", "Description", "Duration Time", "Link", "Image"];
+                                for (var i = 1; i < 6; i++) {
+                                    if (elementos[i].value == 0) {
+                                        alert("Completa el campo" + " " + fields[i - 1]);
+                                        e.preventDefault();
+                                    } else if (i == 3 && !elementos[i].value.match("[0-9]{1,2}:[0-9]{2}")) {
+                                        alert('Formato de Duration Time no valido');
+                                        e.preventDefault();
+                                    }
+                                }
+                            }
+                        };
+                        var validar = function (e) {
+                            validarDuracion(e);
+                        };
+                        formulario.addEventListener("submit", validar);
+                    }());
+
+                    function validateDescription(e, value) {
+                        if (value.length >= 100) {
+                            alert('No se permiten mas caracteres');
+                            e.preventDefault();
+                        }
+                    }
+
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

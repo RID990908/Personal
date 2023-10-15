@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/mycss.css}">
+    <title>YucoByProductions</title>
+</head>
+<body>
+<nav class="navbar navbar-dark bg-dark">
+    <a href="admin.html" class="navbar-brand">
+        <img th:src="@{logos/music-icon_16624.png}" width="10%" height="10%"/>
+        YucoByProductions
+    </a>
+    <a href="https://www.facebook.com/yucoby.produc">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAAFEklEQVRoge2ZW2gcVRjH/2c22SQ1aZLNRXNraFATvKFs0QdfTPTFiKCIQUwFwZQYkqIY8cELrKLFF2+0G4yVgpBgm4q0oO2DJvpgVUICKohtUFuSzcZoLrK7uezOzPn7kLRddmZ2ZjJJfGg+WHZ2zjnf/P7nfOc7c84CO7Zj17aJTfEyRF/TSvxuAM0SCIJsAlFFsJAECCQoGQVwgeQ4wZFL04FRhIT0+mhPAm77dLlO12Q3yf0kawCAJEgAWPte+xAmZRFKDug5Ijx9oCyyrQJuHIpX+JN4k8DTJPwWgNng0+4jBfKY7lNfi3ZWz225gFsHEk9KicMQDGQHdASfXmeeFD3RnorjWyIg2M/c1cJEn5SiwwjiGf5qHaB/JrfyIDqFumkCgv3ctXLd0mckHtxS+Kvtz/jy5ePRzuplOzbFAXzuNsMDQKu2itMI/er3LGC1MNG3zfBrZVI8UF5S+oEdX9YQumUw0U6JAS/wCoiWej/urc5FfbGCkjwFKZ1QdSKWIn6MpvDxTyuW7SX5xEJvzQnXApo+iZUJRTkPsHyj8HdW+vBecyH2FvssO+lcJIXHPl+08E0AWEhRNMZfNE+xliGkKOKQF/i7Kn0Yenh3Vvh0yxJ2gRzK1y05zW7eMbBcu75IbQjeJ4jD9xfB73OWpR3MmY7St6N7HAtQKXvoYYVtbchDbZFtfkgTkBUeJP1S0bvM2uYY7oSokIl2L9mmuS7XFHQypqN3OI5f/lavkKuSdvBrzyCfwhBfRZvQswpo2hu/h0TtRuFJ4PYKY78AwAvDcXw3lbRtb7FC1+y+GAnGgNF0n2bj3OwFniTKC4xu/1qSOLdReF7+LVsy/ZoJ2Od1kSryGyfvZEwHPcADACWCtgIkebMXeJJQTJJPPCm9wRMgZGOmX0OwkqjyAr9+aTBJR9kmax1SVGX6NQmh9W3ghuEtFMArPACwKNOj2Qi4cvzD/oAh5s1C6L76PEw8e73h/snfVvDS14tO4E1H15jviATJgBN4ACjOE6aTNtNyFaAk3zjg0bjmGJ5kPLO92SSecQpPsy5xaRPzmlN4CGDGVgCICa8T1o39vqA6ggcACVywFUBwzFW28ACvSeDPRc0R/Pr1WKYP4yQGR4zA1pP6ua9iyLncDetlRx8qMWw0fp5V8f5o/EodAFjViKQmncKDCkZsBVyaDozuqVqYAllnB08CZ/9YNZR9xBKIDAWzSzpOnV92M2EzO29SlQ3jmbzGORASEpKDTuCtyqzMAzwADJodRZq+tOs5Ikwi5eWVejPhCSZTqhY282sqYPpAWQTksc2CB4x1HMOTkMRRvNU47VgAANDvf4XknFv47CHkHp7EvC50d3tiAIh0FC+Q4qBbeLvFzSU8CHYh1Gh56Jt14xrtqThOoP9/hA/rb9x0MptP2533TGVlN8FTTuEtRbiEB/ClrkSet+OzPzpoE7ovT7aDPOPi4Wb8zuHJLzRlVxtCzZp3AQCindXLswU3PELBD+3h3Wei9PYEw5ov8ihC9ifTgNnrtJV1CnUO6Aq8M/2tAhyRRPlGFrIs8P8Q7LaL+Uxzfvq0bgu9NSeSSTaR7AOQdLMWWC1SEjiiKckmt/CAmxFIs/jLtfMAusvenTqkaegB2E6iziX8FIABVdXDVouUE9ucv1lDVHYXRPaRsoUSwe+fqWoN5Iv80gKfIgTw74qUwxeXFztOz31DcowCI6psGN+Mv1l3bMeudfsPP8EkRZOLDr8AAAAASUVORK5CYII="/>
+    </a>
+    <a href="https://t.me/YucoBy">
+        <img src="data:image/png;base64,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"/>
+    </a>
+    <!--<a href="">-->
+    <img src="data:image/png;base64,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"/>
+    <!--</a>-->
+</nav>
+
+<div class="container mt-4 v-dimension ">
+    <div class="row">
+        <tr th:each="audiovisual : ${audiovisualPage.content}">
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <img th:src="${audiovisual.image}" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${audiovisual.title}"/>
+                        <h5 class="card-title" th:text="${audiovisual.description}"/>
+                        <h5 class="card-title" th:text="${'Duracion'+':'+' '+audiovisual.durationTime}"/>
+                    </div>
+                    <div class="card-footer text-muted" style="-webkit-align-items: center">
+                        <a th:href="${audiovisual.link}" class="btn btn-primary">Ver Detalles</a>
+                    </div>
+                </div>
+            </div>
+        </tr>
+    </div>
+</div>
+<div style="align-content: center; transform: translate(45%, 45%);">
+    <ul class="pagination">
+        <li class="paginate_button page-item  previous" th:classappend="${audiovisualPage.number < 1}? disabled : ''"
+            id="dtBasicExample_previous"><a
+                th:href="@{'/?page='+ ${audiovisualPage.number-1}}"
+                aria-controls="dtBasicExample"
+                data-dt-idx="0"
+                tabindex="0"
+                class="page-link">Previous</a>
+
+        <li class="paginate_button page-item next"
+            th:classappend="${(audiovisualPage.number+1) * audiovisualPage.size >= audiovisualPage.totalElements}? disabled : ''"
+            id="dtBasicExample_next" style="align-items: end"><a
+                th:href="@{'/?page='+ ${audiovisualPage.number+1}}"
+                aria-controls="dtBasicExample"
+                data-dt-idx="7"
+                tabindex="0"
+                class="page-link">Next</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
